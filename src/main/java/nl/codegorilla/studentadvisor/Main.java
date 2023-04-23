@@ -19,15 +19,7 @@ public class Main {
     static final String fOutVMSP = Names.getFilePathString(Names.VMSP_OUTPUT);
 
     public static void buidPatterns(TargetList targetList) throws IOException {
-
-        Settings settings;
-//        try {
-            settings = JsonHandler.deserialize(fSet, new TypeReference<>() {
-            });
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//            return;
-//        }
+        Settings settings = JsonHandler.deserialize(fSet, new TypeReference<>() {});
 
         // each unique step has to get a unique id (a positive integer)
         // because VMSP algorithm can only handle positive integers and no strings
@@ -101,11 +93,6 @@ public class Main {
             nestedList.sort(Collections.reverseOrder(Map.Entry.comparingByKey()));
             outputTargets.put(item.getKey(), new TargetData(item.getValue().size(), nestedList));
         }
-
-//        try {
-            JsonHandler.serialize(fOut, outputTargets);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        JsonHandler.serialize(fOut, outputTargets);
     }
 }
