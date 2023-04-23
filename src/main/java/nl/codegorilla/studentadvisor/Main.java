@@ -21,13 +21,13 @@ public class Main {
     public static void buidPatterns(TargetList targetList) throws IOException {
 
         Settings settings;
-        try {
+//        try {
             settings = JsonHandler.deserialize(fSet, new TypeReference<>() {
             });
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            return;
+//        }
 
         // each unique step has to get a unique id (a positive integer)
         // because VMSP algorithm can only handle positive integers and no strings
@@ -102,10 +102,10 @@ public class Main {
             outputTargets.put(item.getKey(), new TargetData(item.getValue().size(), nestedList));
         }
 
-        try {
+//        try {
             JsonHandler.serialize(fOut, outputTargets);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
