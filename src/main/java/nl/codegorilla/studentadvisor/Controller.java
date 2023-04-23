@@ -20,8 +20,8 @@ public class Controller {
     @PostMapping("/alldata")
     @ResponseBody
     public ResponseEntity<?> getAllData(@RequestBody List<OriginalJsonEntry> jsonEntryList) {
-        TargetList targetList = JsonConverter.convertAllData(jsonEntryList);
         try {
+            TargetList targetList = JsonConverter.convertAllData(jsonEntryList);
             Main.buidPatterns(targetList);
         } catch (Exception e) {
             String errorMessage = "Failed to process the data" + e.getMessage();
@@ -34,14 +34,13 @@ public class Controller {
     @PostMapping("/advice")
     @ResponseBody
     public ResponseEntity<?> getAdvice(@RequestBody OriginalJsonEntry jsonEntry) {
-        Target target = JsonConverter.convertStudentRequest(jsonEntry);
-        Recommended recommended;
         try {
-            recommended = Recommender.getRecommendation(target);
+            Target target = JsonConverter.convertStudentRequest(jsonEntry);
+            Recommended recommended = Recommender.getRecommendation(target);
+            return ResponseEntity.ok(recommended);
         } catch (Exception e) {
             String errorMessage = "Failed to construct a recommendation: " + e.getMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
         }
-        return ResponseEntity.ok(recommended);
     }
 }
