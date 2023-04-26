@@ -1,0 +1,1 @@
+This is a continaution of [this](https://github.com/OHiddema/LearningPlatform) project, using the Spring framework.
